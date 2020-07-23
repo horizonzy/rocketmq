@@ -48,6 +48,7 @@ public class Producer {
         /*
          * Launch the instance.
          */
+        producer.setNamesrvAddr("localhost:9876");
         producer.start();
 
         for (int i = 0; i < 1000; i++) {
@@ -64,7 +65,7 @@ public class Producer {
                 /*
                  * Call send message to deliver message to one of brokers.
                  */
-                SendResult sendResult = producer.send(msg);
+                SendResult sendResult = producer.send(msg, 10000000);
 
                 System.out.printf("%s%n", sendResult);
             } catch (Exception e) {
